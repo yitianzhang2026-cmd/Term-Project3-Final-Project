@@ -1,0 +1,20 @@
+.....                                                                    [100%]
+=============================== warnings summary ===============================
+tests/test_api.py::test_health
+tests/test_api.py::test_health
+tests/test_api.py::test_register_and_login
+  /Users/Zhuanz/Desktop/Capstone AIS/contract-guardian/backend/venv/lib/python3.13/site-packages/sqlalchemy/sql/schema.py:3623: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    return util.wrap_callable(lambda ctx: fn(), fn)  # type: ignore
+
+tests/test_api.py::test_register_and_login
+tests/test_api.py::test_register_and_login
+tests/test_api.py::test_admin_stats_with_admin
+  /Users/Zhuanz/Desktop/Capstone AIS/contract-guardian/backend/utils/auth.py:15: DeprecationWarning: datetime.datetime.utcnow() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.now(datetime.UTC).
+    'exp': datetime.utcnow() + JWT_EXPIRATION_DELTA,
+
+tests/test_api.py::test_admin_stats_with_admin
+  /Users/Zhuanz/Desktop/Capstone AIS/contract-guardian/backend/utils/auth.py:39: LegacyAPIWarning: The Query.get() method is considered legacy as of the 1.x series of SQLAlchemy and becomes a legacy construct in 2.0. The method is now available as Session.get() (deprecated since: 2.0) (Background on SQLAlchemy 2.0 at: https://sqlalche.me/e/b8d9)
+    user = User.query.get(payload['user_id'])
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+5 passed, 7 warnings in 0.80s
