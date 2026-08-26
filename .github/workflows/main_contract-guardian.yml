@@ -1,4 +1,4 @@
-name: Build and deploy Python app to Azure Web App - contractguardian-api
+name: Build and deploy Python app to Azure Web App - Contract-guardian
 
 on:
   push:
@@ -9,26 +9,28 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     permissions:
       contents: read
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - name: Set up Python version
+      - name: Set up Python 3.12
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
 
-      - name: Install dependencies
+      - name: Create virtual environment and install dependencies
         working-directory: contract-guardian
         run: |
           python -m venv antenv
           source antenv/bin/activate
-          pip install --upgrade pip
+          python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Upload artifact for deployment jobs
+      - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: python-app
@@ -39,6 +41,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+
     permissions:
       id-token: write
       contents: read
@@ -58,8 +61,7 @@ jobs:
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
-        id: deploy-to-webapp
         with:
-          app-name: 'contractguardian-api'
+          app-name: 'Contract-guardian'
           slot-name: 'Production'
           package: './contract-guardian'
